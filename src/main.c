@@ -25,13 +25,13 @@ void int_handler(int dummy) {
 int main(int argc, char *argv[]) {
     signal(SIGINT, int_handler);
 
-    if (argc != 2) {
-        fprintf(stderr, "rr-splash: no png image provided...\n");
+    if (argc < 3) {
+        fprintf(stderr, "usage: rr-splash [device] [png]\n");
         return 0;
     }
 
 #ifdef __RETROROOT__
-    struct _fbg *fbg = fbg_fbdevInit();
+    struct _fbg *fbg = fbg_fbdevSetup(argv[1], 0);
 #else
     struct _fbg *fbg = fbg_glfwSetup(640, 480, 4, "rr-splash", 0, 0, 1);
 #endif
@@ -39,7 +39,7 @@ int main(int argc, char *argv[]) {
         return 0;
     }
 
-    struct _fbg_img *texture = fbg_loadPNG(fbg, argv[1]);
+    struct _fbg_img *texture = fbg_loadPNG(fbg, argv[2]);
     if (!texture) {
         fbg_close(fbg);
         return 0;
@@ -59,6 +59,10 @@ int main(int argc, char *argv[]) {
 
         fbg_draw(fbg);
         fbg_flip(fbg);
+
+        if (argc > 3) {
+            break;
+        }
     }
 
     fbg_freeImage(texture);
