@@ -3,6 +3,7 @@
 //
 
 #include <stdio.h>
+#include <unistd.h>
 #include <signal.h>
 #include "fbgraphics.h"
 
@@ -48,8 +49,8 @@ int main(int argc, char *argv[]) {
 #ifdef __RETROROOT__
     while (keep_running) {
 #else
-        while (keep_running && !fbg_glfwShouldClose(fbg)) {
-            fbg_glfwClear();
+    while (keep_running && !fbg_glfwShouldClose(fbg)) {
+        fbg_glfwClear();
 #endif
         fbg_clear(fbg, 0);
 
@@ -62,6 +63,8 @@ int main(int argc, char *argv[]) {
 
         if (argc > 3) {
             break;
+        } else {
+            usleep(500000);
         }
     }
 

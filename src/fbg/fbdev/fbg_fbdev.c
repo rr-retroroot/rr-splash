@@ -173,8 +173,10 @@ void fbg_fbdevDraw(struct _fbg *fbg) {
     struct _fbg_fbdev_context *fbdev_context = fbg->user_context;
 
 #ifdef FBIO_WAITFORVSYNC
+#ifndef __RETROROOT__ // drm crash on rg353 (drm_wait_one_vblank)
     static int dummy = 0;
     ioctl(fbdev_context->fd, FBIO_WAITFORVSYNC, &dummy);
+#endif
 #endif
 
     if (fbdev_context->page_flipping == 0) {
