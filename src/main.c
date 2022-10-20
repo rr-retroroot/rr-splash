@@ -95,14 +95,14 @@ int main(int argc, char *argv[]) {
 
         // ~ 1 second updates for "waiting points"
         fbg_rect(fbg, fbg->width - scale(48), fbg->height - scale(16),
-                 scale(8), scale(8), 255, 30, 86);
+                 scale(8), scale(8), 86, 30, 255);
         if (timer > 2) {
             fbg_rect(fbg, fbg->width - scale(32), fbg->height - scale(16),
-                     scale(8), scale(8), 255, 30, 86);
+                     scale(8), scale(8), 86, 30, 255);
         }
         if (timer > 4) {
             fbg_rect(fbg, fbg->width - scale(16), fbg->height - scale(16),
-                     scale(8), scale(8), 255, 30, 86);
+                     scale(8), scale(8), 86, 30, 255);
         }
         if (timer > 6) {
             timer = 0;
