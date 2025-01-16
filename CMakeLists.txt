@@ -31,3 +31,4 @@ target_link_libraries(rr-splash PRIVATE ${LIBS} m)
 #####################
 install(PROGRAMS ${PROJECT_BINARY_DIR}/${CMAKE_PROJECT_NAME} DESTINATION bin)
 install(FILES ${CMAKE_SOURCE_DIR}/data/logo.png DESTINATION share/retroroot/rr-splash)
+install(FILES ${CMAKE_SOURCE_DIR}/data/logo-90.png DESTINATION share/retroroot/rr-splash)
